@@ -42,6 +42,15 @@ void liberardato(struct Dato *ptr){
         free(temp);
     }
 }
+void salir() {
+    struct Dato *ptraux;
+
+    while (ptr != NULL) {
+        ptraux = ptr;        // guardar el nodo actual
+        ptr = ptr->ptrsig;   // avanzar al siguiente
+        free(ptraux);        // liberar el anterior
+    }
+}
 
 int main(void){
     struct Dato *ptr=NULL;
