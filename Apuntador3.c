@@ -46,9 +46,9 @@ void salir() {
     struct Dato *ptraux;
 
     while (ptr != NULL) {
-        ptraux = ptr;        // guardar el nodo actual
-        ptr = ptr->ptrsig;   // avanzar al siguiente
-        free(ptraux);        // liberar el anterior
+        ptraux = ptr;       
+        ptr = ptr->ptrsig;   
+        free(ptraux);        
     }
 }
 
@@ -73,6 +73,8 @@ int main(void){
             break;
         case 3:
             liberardato(ptr);
+        case 4:
+            salir();
         break;
 
         default:
@@ -80,4 +82,5 @@ int main(void){
         }
     }while(opcion!=4);
     return 0;
+    salir();
 }
