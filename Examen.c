@@ -12,7 +12,7 @@ struct Examen *crearnuevo(void){
     ptrtemp = (struct Examen*) malloc(sizeof(struct Examen));
     if(ptrtemp==NULL){
         printf("No se revervó memoria\n");
-        return 0;
+        return NULL;
     }
     else{
         printf("Indique el dato de su nodo:\n");
@@ -23,11 +23,15 @@ struct Examen *crearnuevo(void){
     
 return ptrtemp;
 }
+struct Examen mostrar(struct Examen *ptr){
+
+}
 int main(){
     struct Examen *ptrinicial=NULL;
     int opcion;
     do{
-        printf("-----MENU-----\n[1]Crear nuevo nodo\n");
+        printf("Ingrese un numero de opcion: \n\n");
+        printf("-----MENU-----\n[1] Crear nuevo nodo\n[2] Mostrar\n");
         scanf("%d",&opcion);        
         switch (opcion)
         {
