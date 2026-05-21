@@ -5,9 +5,18 @@ struct arbol{
     int dato;
     struct arbol *ptrizq,*ptrder;
 };
-struct arbol Insertar*(){
+struct arbol *Insertar(){
 struct arbol *ptrtemp;
-ptrtemp = (struct arbol) malloc(sizeof(struct arbol));
+    ptrtemp = (struct arbol*) malloc(sizeof(struct arbol));
+    if(ptrtemp==NULL)
+    return NULL;
+    printf("Ingrese dato del nodo\n");
+    scanf("%d",&ptrtemp->dato);
+
+    ptrtemp->ptrder = NULL;
+    ptrtemp->ptrizq = NULL;
+    
+    return ptrtemp;
 }
 
 int main(){
@@ -20,36 +29,47 @@ int main(){
           switch(opcion){
             case 1:
             ptrtemp = Insertar();
-            if(ptrtemp==NULL)
+            if(ptrtemp==NULL){
                 printf("No se creo el nodo\n");
+                break;
+            }
             if(raiz==NULL)
                 raiz = ptrtemp;
             else{
                 struct arbol *ptraux;
                 ptraux = raiz;
-                while(ptraux->ptrizq||ptraux->ptrder!=NULL){
+                while(ptraux!=NULL){
                     
-                    if(ptrtemp->dato > ptraux->dato&& ptraux->ptrder==NULL)
+                    if(ptrtemp->dato > ptraux->dato){
+                        if(ptraux->ptrder==NULL){
                         ptraux->ptrder = ptrtemp;
-                    if(ptrtemp->dato < ptraux->dato&& ptraux->ptrizq==NULL)
+                        break;
+                    }else{
+                        ptraux = ptraux->ptrder;
+                    
+                    }}else if(ptrtemp->dato < ptraux->dato){
+                        if(ptraux->ptrizq==NULL){
                         ptraux->ptrizq = ptrtemp;
+                        break;
+                    }else{
+                        ptraux = ptraux->ptrizq;
                     
+                         }
+                    }
                         
-                    
-                
                 }
-                
-            }
+
+                }
             
-            break
+            break;
 
             case 2:
 
-            break
+            break;
             
             case 3:
 
-            break
+            break;
           }
         
     }while(opcion!=3);
