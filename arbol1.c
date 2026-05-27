@@ -18,12 +18,26 @@ struct arbol *ptrtemp;
     
     return ptrtemp;
 }
+void inOrden(struct arbol *ptr){
+    if(ptr==NULL)
+        return ;
+    else{
+        inOrden(ptr->ptrizq);
+        printf(" %d, ",ptr->dato);
+        inOrden(ptr->ptrder);
+    }
+
+}
+void preOrden(struct arbol *ptr){
+    
+}
+
 
 int main(){
     struct arbol *raiz=NULL,*ptrtemp;
     int opcion;
     do{
-          printf("-------MENU-------\n [1] Insertar\n [2] Eliminar\n [3] Salir");
+          printf("\n-------MENU-------\n [1] Insertar\n [2] Mostrar\n [3] Salir\n");
           scanf("%d",&opcion);
 
           switch(opcion){
@@ -36,34 +50,40 @@ int main(){
             if(raiz==NULL)
                 raiz = ptrtemp;
             else{
-                struct arbol *ptraux;
+                struct arbol *ptraux=NULL;
                 ptraux = raiz;
-                while(ptraux!=NULL){
-                    
+                while(1){                    
                     if(ptrtemp->dato > ptraux->dato){
                         if(ptraux->ptrder==NULL){
-                        ptraux->ptrder = ptrtemp;
-                        break;
-                    }else{
-                        ptraux = ptraux->ptrder;
-                    
-                    }}else if(ptrtemp->dato < ptraux->dato){
+                            ptraux->ptrder = ptrtemp;
+                            break;
+                            }
+                        else{
+                            ptraux = ptraux->ptrder;
+                            }
+                    }else if(ptrtemp->dato < ptraux->dato){
                         if(ptraux->ptrizq==NULL){
-                        ptraux->ptrizq = ptrtemp;
-                        break;
-                    }else{
-                        ptraux = ptraux->ptrizq;
-                    
+                            ptraux->ptrizq = ptrtemp;
+                            break;
+                        }else{
+                            ptraux = ptraux->ptrizq;                    
                          }
                     }
+                    else if(ptrtemp->dato==ptraux->dato){
+                        printf("El valor ya existe, reinicie el programa\n");
+                        break;
+                    }
                         
-                }
+                    }
 
                 }
             
             break;
 
             case 2:
+                printf("Los nodos son\n");
+                inOrden(raiz);
+                printf("\n\n");
 
             break;
             
@@ -73,4 +93,5 @@ int main(){
           }
         
     }while(opcion!=3);
+    return 0;
 }
