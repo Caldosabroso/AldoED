@@ -6,8 +6,9 @@ int menuPrincipal(void){
         scanf("%d",&opcion);
         return opcion;
 }
-
-struct Persona *crearNuevaPersona(void){
+//Funcion para crear nueva persona 
+//Falta hacer que tanto nuevaPersona como nuevoAlum contengan todos los datos solicitados
+struct Persona *nuevaPersona(void){
     struct Persona *ptrTemp;
 
     ptrTemp = (struct Persona *) malloc(sizeof(struct Persona));
@@ -23,3 +24,27 @@ struct Persona *crearNuevaPersona(void){
 
     return ptrTemp;
 }
+//Funcion para crear nuevo Alumno
+
+//Funcion para dar de alta a una persona nueva
+int Altas(strct Persona **ptr){
+    struct Persona *P=NULL;
+    struct Persona *A=NULL;
+    int b= 1;
+    P=nuevaPersona();
+    if(P==NULL)
+        b=0;
+    else{
+        A=nuevoAlumno();
+        if(A==NULL){
+            b=0;
+            free(P);
+        }
+            else {
+                P->ptrAlum=A;
+                if(*ptr==NULL)//no se ha creado ningun nodo
+                    *ptr=P;//apuntar al primer nodo
+//Para no tener que hacer las dos lineas anteriores 
+            P->Ptrsig=*ptr;
+            *ptr=P;
+    }
