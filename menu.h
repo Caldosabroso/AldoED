@@ -6,3 +6,20 @@ int menuPrincipal(void){
         scanf("%d",&opcion);
         return opcion;
 }
+
+struct Persona *crearNuevaPersona(void){
+    struct Persona *ptrTemp;
+
+    ptrTemp = (struct Persona *) malloc(sizeof(struct Persona));
+
+    if(ptrTemp == NULL){
+        printf("No se reservó memoria\n");
+        return NULL;
+    }
+
+    ptrTemp->nombre = NULL;
+    ptrTemp->ptrSig = NULL;
+    ptrTemp->ptrAlum = NULL;
+
+    return ptrTemp;
+}
